@@ -1,0 +1,57 @@
+<div class="container">
+  <% if @protocol.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>При создании протокола возникли ошибки:</h6>
+      <ul>
+        <% @protocol.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 class="text-center text-primary pt-4 pb-3">Создать протокол пациента</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center mb-4 row">
+    <%= form_with url: user_card_protocols_path do |f| %>
+      <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong><%= f.label "Прием" %></strong>
+            <span><%= select_tag :type_of_inspection,
+                                 options_for_select([["Первичный прием", Protocol.type_of_inspections.keys.first],
+                                                     ["Повторный прием", Protocol.type_of_inspections.keys.second]]),
+                                 class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Жалобы пациента" %></strong>
+            <span><%= f.text_area :complaint, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Анамнез жизни" %></strong>
+            <span><%= f.text_area :anamnesis_of_life, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Анамнез болезни" %></strong>
+            <span><%= f.text_area :medical_history, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Симптомы" %></strong>
+            <span><%= f.text_area :symptom, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Cocтояние" %></strong>
+            <span><%= f.text_area :state, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Диагноз" %></strong>
+            <span><%= f.text_area :diagnosis, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Рекомендации по лечению" %></strong>
+            <span><%= f.text_area :therapy, class: 'form-control' %></span>
+          </p>
+        </div>
+      </div>
+      <%= f.submit "Создать протокол", class: "btn btn-light text-primary d-block mb-4 m-auto" %>
+    <% end %>
+  </div>
+</div>

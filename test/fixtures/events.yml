@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  expert_id: 1
+  name: MyString
+  phone: 1
+  email: MyString
+  time: 2021-02-19 13:51:00
+  comment: MyString
+
+two:
+  user_id: 1
+  expert_id: 1
+  name: MyString
+  phone: 1
+  email: MyString
+  time: 2021-02-19 13:51:00
+  comment: MyString

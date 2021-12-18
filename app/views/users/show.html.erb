@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <% if current_user.patient? %>
+      <%= render "users/patient", object: @user %>
+    <% else %>
+      <%= render "users/doctor", object: @user %>
+    <% end %>
+  </div>
+</div>

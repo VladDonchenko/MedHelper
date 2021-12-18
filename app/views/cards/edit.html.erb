@@ -1,0 +1,62 @@
+<div class="container">
+  <% if @card.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>При редактировании возникли ошибки:</h6>
+      <ul>
+        <% @card.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 class="text-center text-primary pt-4 pb-3">Редактировать карту пациента</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center mb-4 row">
+    <%= form_with model: @card, url: user_card_path(current_user, @card), method: 'PUT' do |f| %>
+      <div class="text-center">
+        <%= image_tag(@card&.image, size: 250, class: 'text-center img-fluid my-4') %>
+        <%= f.file_field(:image, title: current_user.card.image.filename.to_s,
+                         direct_upload: true,
+                         class: "rounded mx-auto d-block form-control w-auto") %>
+      </div>
+      <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong><%= f.label "ФИО" %></strong>
+            <span><%= f.text_field :full_name, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Дата рождения" %></strong>
+            <span><%= f.date_field :birthday, max: DateTime.now, class: "form-control" %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Пол" %></strong>
+            <span><%= select_tag('card[gender]',
+                                 options_for_select([["Мужчина", "Мужчина"], ["Женщина", "Женщина"]]),
+                                 class: 'form-control') %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Телефон" %></strong>
+            <span><%= f.telephone_field :phone, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Адрес" %></strong>
+            <span><%= f.text_area :address, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Место работы" %></strong>
+            <span><%= f.text_area :work, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Поручитель" %></strong>
+            <span><%= f.text_field :member, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Примечания" %></strong>
+            <span><%= f.text_area :comment, class: 'form-control' %></span>
+          </p>
+        </div>
+      </div>
+      <%= f.submit "Редактировать карту", class: "btn btn-light text-primary d-block mb-4 m-auto" %>
+    <% end %>
+  </div>
+</div>

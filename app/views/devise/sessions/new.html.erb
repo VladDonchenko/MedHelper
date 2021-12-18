@@ -1,0 +1,12 @@
+<div class="container text-center text-black-50">
+  <%= content_tag(:div, flash[:notice], :id => "flash_notice", class: "alert alert-notice") if flash[:notice] %>
+  <h2 class="text-center pt-5 pb-3 text-primary">Войти</h2>
+  <p class="fs-4 pb-4">Приветствуем вас снова!</p>
+  <p>Используйте ваш Google Account для входа</p>
+  <%= link_to "Войти через Google Account", user_google_oauth2_omniauth_authorize_path,
+              class: 'btn btn-primary btn-lg mb-5' %>
+  <div class="my-5">
+    <p>Если вы ещё не зарегистрированы - вы можете сделать это здесь</p>
+    <%= link_to "Регистрация", new_user_registration_path, class: "btn btn-success" %>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<section class="welcome-page">
+  <div class="container-fluid d-flex flex-column justify-content-around h-100">
+    <div class="row text-black-50 m-5 pt-5 welcome-text">
+      <div class="col-12 col-sm-7 col-md-5">
+        <p class="fw-bold">
+          <span class="text-uppercase text-primary">MedHelper</span>
+          - это иновационная платформа, где вы можете получить все необходимые медицинские
+          консультации <span class="text-uppercase text-success">бесплатно</span> и онлайн 24/7.</p>
+        <p>В условиях пандемии COVID-19 особенно актуальной стала возможность получения медицинской информации без
+          посещения медицинской организации.</p>
+      </div>
+      <p class="fw-bold m-0">Здесь Вы можете:</p>
+      <ul class="list-unstyled">
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>найти врача и записаться на приём</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>онлайн-консультация с докторами</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>записаться на обследование</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>составить график вакцинации</span>
+        </li>
+      </ul>
+      <div class="ml-5 mt-sm-4 mt-0">
+        <%= link_to "Узнать больше...", page_path(page: 'about'), class: "btn btn-lg btn-success w-auto text-nowrap" %>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="welcome-about text-black-50">
+  <div class="container">
+    <div class="row text-center my-5">
+      <div class="col-12 col-md-4">
+        <div class="px-4 welcome-about-item">
+          <%= image_tag("abacus-icon.png", size: "50x50", alt: "icon", class: "img-fluid my-3") %>
+          <h4>Наш сервис абсолютно бесплатен для пациентов</h4>
+          <small class="">Наши врачи работают бесплатно на добровольческих началах, а сервис - без скрытых наценок и
+            комиссий.</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="px-4 welcome-about-item">
+          <%= image_tag("meet-icon.png", size: "50x50", alt: "icon", class: "img-fluid my-3") %>
+          <h4>В нашем call-центре работают операторы-медики</h4>
+          <small class="">В нашем call-центре работают операторы с медицинским образованием, которые помогут Вам выбрать
+            лучшего специалиста</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="px-4 welcome-about-item">
+          <%= image_tag("castle-icon.png", size: "50x50", alt: "icon", class: "img-fluid my-3") %>
+          <h4>Ваши данные в полной безопасности</h4>
+          <small class="">Мы гарантируем Вам конфиденциальность Ваших данных. Ваша персональная информация используется
+            только для записи на прием к врачу.</small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <h4 class="color-lightgray mb-3">Как это работает</h4>
+        <%= image_tag("how_its_works.jpg", class: "img-fluid mb-5") %>
+      </div>
+      <div class="col-12 col-lg-6 welcome-news">
+        <h4 class="color-lightgray mb-3">Последние новости о COVID-19</h4>
+        <% @news.each do |item| %>
+          <%= render partial: 'one_news', locals: { item: item, text_length: 100} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3">Протокол приема №<%= @protocol.card.id + @protocol.id %></h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
+    <div class="m-auto">
+      <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong>Жалобы пациента: </strong><br>
+            <span><%= @protocol.complaint %></span>
+          </p>
+          <p>
+            <strong>Анамнез жизни: </strong><br>
+            <span><%= @protocol.anamnesis_of_life %></span>
+          </p>
+          <p>
+            <strong>Анамнез болезни: </strong><br>
+            <span><%= @protocol.medical_history %></span>
+          </p>
+          <p>
+            <strong>Симптомы: </strong><br>
+            <span><%= @protocol.symptom %></span>
+          </p>
+          <p>
+            <strong>Cocтояние: </strong><br>
+            <span><%= @protocol.state %></span>
+          </p>
+          <p>
+            <strong>Диагноз: </strong><br>
+            <span><%= @protocol.diagnosis %></span>
+          </p>
+          <p>
+            <strong>Рекомендации по лечению: </strong><br>
+            <span><%= @protocol.therapy %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

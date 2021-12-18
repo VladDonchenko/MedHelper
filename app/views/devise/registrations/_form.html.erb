@@ -1,0 +1,27 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="row pt-3">
+    <div class="col-6">
+      <div class="form-check mb-5">
+        <p class="fs-5">Пациент</p>
+        <%= radio_button_tag 'user[type]', 'patient', false, id: "btn-check-pacient", class: "btn-check" %>
+        <%= f.label :choose_role,
+                    image_tag("pacient.png", size: "200x200", alt: "pacient_choose", class: "rounded-circle img-fluid"),
+                    class: "btn role-image btn-primary rounded-circle",
+                    for: "btn-check-pacient" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-check">
+        <p class="fs-5">Врач</p>
+        <%= radio_button_tag 'user[type]', 'doctor', true, id: "btn-check-doctor", class: "btn-check" %>
+        <%= f.label :choose_role,
+                    image_tag("doc.png", size: "200x200", alt: "doctor_choose", class: "rounded-circle img-fluid"),
+                    class: "btn role-image btn-primary rounded-circle",
+                    for: "btn-check-doctor" %>
+      </div>
+    </div>
+    <div class="d-block">
+      <%= f.submit "Войти через Google аккаунт", class: "btn btn-primary btn-lg text-white" %>
+    </div>
+  </div>
+<% end %>

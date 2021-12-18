@@ -1,0 +1,55 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  full_name: MyString
+  description: MyText
+  level: MyText
+  experience: 1
+  additional_education: MyText
+  procedure: 
+  address: MyString
+  medical_center: MyString
+  email: MyString
+  phone: MyString
+  image: MyString
+  hw_start_monday: 2021-02-16 19:23:31
+  hw_end_monday: 2021-02-16 19:23:31
+  hw_start_tuesday: 2021-02-16 19:23:31
+  hw_end_tuesday: 2021-02-16 19:23:31
+  hw_start_wednesday: 2021-02-16 19:23:31
+  hw_end_wednesday: 2021-02-16 19:23:31
+  hw_start_thursday: 2021-02-16 19:23:31
+  hw_end_thursday: 2021-02-16 19:23:31
+  hw_start_friday: 2021-02-16 19:23:31
+  hw_start_friday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+
+two:
+  full_name: MyString
+  description: MyText
+  level: MyText
+  experience: 1
+  additional_education: MyText
+  procedure: 
+  address: MyString
+  medical_center: MyString
+  email: MyString
+  phone: MyString
+  image: MyString
+  hw_start_monday: 2021-02-16 19:23:31
+  hw_end_monday: 2021-02-16 19:23:31
+  hw_start_tuesday: 2021-02-16 19:23:31
+  hw_end_tuesday: 2021-02-16 19:23:31
+  hw_start_wednesday: 2021-02-16 19:23:31
+  hw_end_wednesday: 2021-02-16 19:23:31
+  hw_start_thursday: 2021-02-16 19:23:31
+  hw_end_thursday: 2021-02-16 19:23:31
+  hw_start_friday: 2021-02-16 19:23:31
+  hw_start_friday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31
+  hw_start_saturday: 2021-02-16 19:23:31

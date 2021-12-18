@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-md-1">
+      <div class="card card-pacient-first">
+        <div class="card-header card-pacient text-center">
+          Профиль пациента</div>
+         <div class="card-body text-center">
+          <p><%= image_tag(@user.image , size: "150x150") %></p>
+          <p>E-mail:<%= @user.email %></p>
+          <p>Birthday:<%= @user.birthday.strftime("%d of %B, %Y") if @user.birthday %></p>
+          <%= link_to "Редактировать карту пациента", edit_user_card_path(@user, @user.card),
+                      class: "btn btn-success" %><br>
+          <%= link_to "Ваша карта вакцинации", user_vaccine_path(@user), class: "btn btn-success" %><br>
+          <%= link_to "Редактировать профиль", edit_user_path(@user), class: "btn btn-success" %><br>
+          <%= link_to "Дети", user_children_path(@user), class: "btn btn-success" %><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3">Карта пациента</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
+    <div class="text-center">
+      <%= image_tag(@card&.image, size: 250, class: 'text-center img-fluid mt-4') %>
+    </div>
+    <div class="m-auto">
+      <div class="pacient-card-info bg-primary p-4 text-white m-3 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong>ФИО: </strong>
+            <span><%= @card&.full_name %></span>
+          </p>
+          <p>
+            <strong>Дата рождения: </strong>
+            <span><%= l @card&.birthday, format: :custom %></span>
+          </p>
+          <p>
+            <strong>Пол: </strong>
+            <span><%= @card&.gender %></span>
+          </p>
+          <p>
+            <strong>Телефон: </strong>
+            <span><%= @card&.phone %></span>
+          </p>
+          <p>
+            <strong>Адрес: </strong>
+            <span><%= @card&.address %></span>
+          </p>
+          <p>
+            <strong>Место работы: </strong>
+            <span><%= @card&.work %></span>
+          </p>
+          <p>
+            <strong>Поручитель: </strong>
+            <span><%= @card&.member %></span>
+          </p>
+          <p>
+            <strong>Примечания: </strong>
+            <span><%= @card&.comment %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% if current_user.expert.present? %>
+      <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card),
+                  class: "btn btn-light text-primary d-block mb-4 inherit" %>
+    <% else %>
+      <%= link_to "Редактировать", edit_user_card_path(@card.user, @card),
+                  class: "btn btn-light text-primary d-block mb-4 inherit" %>
+    <% end %>
+  </div>
+  <h3 class="text-center text-primary pt-5 pb-3">История приемов</h3>
+
+  <% if @protocols.present? %>
+    <% @protocols.each do |protocol| %>
+      <div class="border border-secondary my-3 card-border">
+        <h5 class="bg-secondary border border-secondary card-border-top text-white px-4 py-3 mb-0">
+          Протокол приема № <%= @card.id + protocol.id %>
+        </h5>
+        <div class="row my-3">
+          <div class="col-12 col-md-3 d-flex align-items-center justify-content-center ml-md-5">
+            <%= image_tag(protocol.expert&.image, size: 200, class: 'avatar-contain m-3 img-fluid px-md-2') %>
+          </div>
+          <div class="col-12 col-md-6 text-black-50 d-flex flex-column
+         justify-content-center align-items-center align-items-md-start px-4">
+            <h5>
+              <%= link_to protocol.expert.full_name, expert_path(protocol.expert), class: "text-success" %>
+            </h5>
+            <p class="text-secondary fs-5"><%= protocol.expert.category.name %></p>
+            <p><strong>Диагноз: </strong> <%= protocol.diagnosis %></p>
+            <p><strong>Рекоммендации по лечению: </strong><%= protocol.therapy %></p>
+            <span class="border border-2 rounded-pill badge bg-primary text-wrap">
+             <%= protocol.type_of_inspection == "first_visit" ? "Первичный прием" : "Повторный прием" %>
+           </span>
+          </div>
+          <div class="col-12 col-md-3 d-flex flex-column justify-content-around">
+            <div class="mx-2 ">
+              <%= link_to "Подробнее", user_card_protocol_path(@card.user, @card, protocol),
+                          class: "btn btn-secondary d-block m-3" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-center">Протоколы приемов отсутствуют</p>
+  <% end %>
+</div>

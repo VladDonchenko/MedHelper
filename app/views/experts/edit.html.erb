@@ -1,0 +1,242 @@
+<div class="container">
+  <% if @expert.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>При редактировании возникли ошибки:</h6>
+      <ul>
+        <% @expert.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 class="text-center text-primary pt-4 pb-3">Редактировать профиль</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center mb-4 row">
+    <%= form_with model: @expert, method: :put do |f| %>
+      <div class="text-center">
+        <%= image_tag @expert.image.url || current_user.image, size: 250, class: 'text-center img-fluid my-4' %>
+        <%= f.file_field(:image, direct_upload: true,
+                         class: "rounded mx-auto d-block form-control w-auto") %>
+      </div>
+      <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong><%= f.label "ФИО" %></strong>
+            <span><%= f.text_field :full_name, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Категория" %></strong>
+            <span><%= select_tag('expert[category_id]',
+                                 options_for_select(Category.all.map { |category| [category.name, category.id] },
+                                                    @expert.category.id), class: 'select form-control') %>
+            </span>
+          </p>
+          <p>
+            <strong><%= f.label "Уровень" %></strong>
+            <span><%= select_tag('expert[level_id]',
+                                 options_for_select(Level.all.map { |level| [level.name, level.id] },
+                                                    @expert.level.id), class: 'select form-control') %>
+            </span>
+          </p>
+          <p>
+            <strong><%= f.label "Краткое описание:" %></strong>
+            <span><%= f.text_area :description, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Опыт:" %></strong>
+            <span><%= number_field_tag 'expert[experience]', "#{current_user.expert.experience}",
+                                       in: 0...99,
+                                       class: 'form-control' %>
+            </span>
+          </p>
+          <p>
+            <strong><%= f.label "Образование" %></strong>
+            <span><%= f.text_area :education, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Дополнительное образование:" %></strong>
+            <span><%= f.text_area :additional_education, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Процедуры:" %></strong>
+            <span><%= f.text_area :procedure, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Место работы:" %></strong>
+            <span><%= f.text_area :medical_center, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Адрес:" %></strong>
+            <span><%= f.text_field :address,
+                                   placeholder: "улица Смелянская, 132, Черкассы",
+                                   class: 'form-control' %>
+            </span>
+          </p>
+          <p>
+            <strong><%= f.label "Teлефон:" %></strong>
+            <span><%= f.telephone_field :phone, class: 'form-control' %></span>
+          </p>
+          <div class="fs-5">
+            <h4 class="pt-3 text-center">График работы:</h4>
+            <p class="py-2">Понедельник:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_monday]', options_for_select(set_time, @expert.hw_start_monday),
+                               class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:hw_start_monday).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_monday]', options_for_select(set_time, @expert.hw_end_monday),
+                               class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <p class="py-2">Вторник:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_tuesday]', options_for_select(set_time, @expert.hw_start_tuesday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_tuesday]', options_for_select(set_time, @expert.hw_end_tuesday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <p class="py-2">Среда:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_wednesday]', options_for_select(set_time, @expert.hw_start_wednesday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_wednesday]', options_for_select(set_time, @expert.hw_end_wednesday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <p class="py-2">Четверг:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_thursday]', options_for_select(set_time, @expert.hw_start_thursday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_thursday]', options_for_select(set_time, @expert.hw_end_thursday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <p class="py-2">Пятница:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_friday]', options_for_select(set_time, @expert.hw_start_friday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_friday]', options_for_select(set_time, @expert.hw_end_friday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <p class="py-2">Cуббота:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_saturday]', options_for_select(set_time, @expert.hw_start_saturday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_saturday]', options_for_select(set_time, @expert.hw_end_saturday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <p class="py-2">Воскресенье:</p>
+            <div class="row text-center">
+              <div class="col-sm-1">
+                <span>C</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_start_sunday]', options_for_select(set_time, @expert.hw_start_sunday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+              <div class="col-sm-1">
+                <span>До</span>
+              </div>
+              <div class="col-sm-5">
+                <%= select_tag('expert[hw_end_sunday]', options_for_select(set_time, @expert.hw_end_sunday), class: 'form-control') %>
+                <% @expert.errors.full_messages_for(:phone).each do |message| %>
+                  <div class="alert alert-warning alert-event"><%= message %></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "Редактировать карту", class: "btn btn-light text-primary d-block mb-4 m-auto" %>
+    <% end %>
+  </div>
+</div>
+

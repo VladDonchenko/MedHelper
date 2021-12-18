@@ -1,0 +1,30 @@
+.about-page {
+  height: calc(70vh - 50px);
+  background-image: url(asset_path('about_bg.jpg'));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.about-items-image {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 170px;
+  width: 170px!important;
+  z-index: 1;
+}
+
+@media (max-width: 1200px) {
+  .about-items-image {
+    height: 130px;
+    width: 130px!important;
+  }
+}
+
+@media (max-width: 540px) {
+  .about-text {
+    position: relative;
+    top: 50px
+  }
+}

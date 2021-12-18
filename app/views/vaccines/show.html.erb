@@ -1,0 +1,414 @@
+<% v = @vaccines %>
+<section class="section-vaccine">
+  <div class="container">
+    <h3 class="text-center my-4 text-primary">Карта вакцинации</h3>
+    <h4 class="text-center text-black-50"><%= @user.name if @user.name.present? %></h4>
+
+    <% if @birthday %>
+      <% if params[:child_id].present? %>
+        <%= link_to "Добавить запись о прививке", edit_user_child_vaccine_path(url: "user_child_vaccine_path"),
+                    class: "btn btn-primary btn-lg text-white w-100 my-3" %>
+      <% else %>
+        <%= link_to "Добавить запись о прививке", edit_user_vaccine_path(url: "user_vaccine_path"),
+                    class: "btn btn-primary btn-lg text-white w-100 my-3" %>
+      <% end %>
+
+      <div class="text-center fs-4">
+        <p>Гепатит А</p>
+      </div>
+      <p class="<%= v.hepatitis_a_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.hepatitis_a_1w
+              l v.hepatitis_a_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : l((@birthday + 12.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.hepatitis_a_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.hepatitis_a_2w
+              l v.hepatitis_a_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.hepatitis_a_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.hepatitis_a_1w > @birthday + 17.months
+                  l (v.hepatitis_a_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 18.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Гепатит B</p>
+      </div>
+      <p class="<%= v.hepatitis_b_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.hepatitis_b_1w
+              l v.hepatitis_b_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(0) ? "можно уже сегодня" : l((@birthday), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.hepatitis_b_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.hepatitis_b_2w
+              l v.hepatitis_b_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.hepatitis_b_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.hepatitis_b_1w > @birthday + 1.months
+                  l (v.hepatitis_b_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 2.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.hepatitis_b_3w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>3 вакцинация: </strong>
+        <%= if v.hepatitis_b_3w
+              l v.hepatitis_b_3w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.hepatitis_b_2w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.hepatitis_b_2w > @birthday + 5.months
+                  l (v.hepatitis_b_2w + 1.months), format: :custom
+                else
+                  l (@birthday + 6.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center fs-4">
+        <p>Туберкулёз</p>
+      </div>
+      <p class="<%= v.tuberculosis ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.tuberculosis
+              l v.tuberculosis, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(0) ? "можно уже сегодня" : l((@birthday + 3.days), format: :custom)}"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Пневмококовая инфекция</p>
+      </div>
+      <p class="<%= v.pneumococcus_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.pneumococcus_1w
+              l v.pneumococcus_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((@birthday + 2.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.pneumococcus_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.pneumococcus_2w
+              l v.pneumococcus_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.pneumococcus_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.pneumococcus_1w > @birthday + 3.months
+                  l (v.pneumococcus_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 4.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.pneumococcus_3w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>3 вакцинация: </strong>
+        <%= if v.pneumococcus_3w
+              l v.pneumococcus_3w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.pneumococcus_2w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.pneumococcus_2w > @birthday + 5.months
+                  l (v.pneumococcus_2w + 1.months), format: :custom
+                else
+                  l (@birthday + 6.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Менингококовая инфекция</p>
+      </div>
+      <p class="<%= v.meningococcus_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.meningococcus_1w
+              l v.meningococcus_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(9) ? "можно уже сегодня" : l((@birthday + 9.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.meningococcus_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.meningococcus_2w
+              l v.meningococcus_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.meningococcus_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.meningococcus_1w > @birthday + 11.months
+                  l (v.meningococcus_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 12.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Ветряная оспа</p>
+      </div>
+      <p class="<%= v.varicella_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.varicella_1w
+              l v.varicella_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : l((@birthday + 12.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.varicella_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.varicella_2w
+              l v.varicella_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{v.varicella_1w ? l((v.varicella_1w + 2.months), format: :custom) : "рассчитается от даты предыдущей прививки"}"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Корь - Паротит - Краснуха</p>
+      </div>
+      <p class="<%= v.morbilli_mumps_rubella_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.morbilli_mumps_rubella_1w
+              l v.morbilli_mumps_rubella_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : l((@birthday + 12.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.morbilli_mumps_rubella_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.morbilli_mumps_rubella_2w
+              l v.morbilli_mumps_rubella_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.morbilli_mumps_rubella_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.morbilli_mumps_rubella_1w > @birthday + 72.months
+                  l (v.morbilli_mumps_rubella_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 72.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Коклюш - Дифтерия - Столбняк</p>
+      </div>
+      <p class="<%= v.diphtheria_tetanus_pertussis_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.diphtheria_tetanus_pertussis_1w
+              l v.diphtheria_tetanus_pertussis_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((@birthday + 2.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.diphtheria_tetanus_pertussis_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.diphtheria_tetanus_pertussis_2w
+              l v.diphtheria_tetanus_pertussis_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.diphtheria_tetanus_pertussis_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.diphtheria_tetanus_pertussis_1w > @birthday + 3.months
+                  l (v.diphtheria_tetanus_pertussis_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 4.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.diphtheria_tetanus_pertussis_3w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>3 вакцинация: </strong>
+        <%= if v.diphtheria_tetanus_pertussis_3w
+              l v.diphtheria_tetanus_pertussis_3w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.diphtheria_tetanus_pertussis_2w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.diphtheria_tetanus_pertussis_2w > @birthday + 5.months
+                  l (v.diphtheria_tetanus_pertussis_2w + 1.months), format: :custom
+                else
+                  l (@birthday + 6.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.diphtheria_tetanus_pertussis_1rw ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 ревакцинация: </strong>
+        <%= if v.diphtheria_tetanus_pertussis_1rw
+              l v.diphtheria_tetanus_pertussis_1rw, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.diphtheria_tetanus_pertussis_3w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.diphtheria_tetanus_pertussis_3w > @birthday + 17.months
+                  l (v.diphtheria_tetanus_pertussis_3w + 1.months), format: :custom
+                else
+                  l (@birthday + 18.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.diphtheria_tetanus_pertussis_2rw ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 ревакцинация: </strong>
+        <%= if v.diphtheria_tetanus_pertussis_2rw
+              l v.diphtheria_tetanus_pertussis_2rw, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.diphtheria_tetanus_pertussis_1rw.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.diphtheria_tetanus_pertussis_1rw > @birthday + 72.months
+                  l (v.diphtheria_tetanus_pertussis_1rw + 1.months), format: :custom
+                else
+                  l (@birthday + 72.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.diphtheria_tetanus_pertussis_3rw ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>3 ревакцинация: </strong>
+        <%= if v.diphtheria_tetanus_pertussis_3rw
+              l v.diphtheria_tetanus_pertussis_3rw, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.diphtheria_tetanus_pertussis_2rw.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.diphtheria_tetanus_pertussis_2rw > @birthday + 192.months
+                  l (v.diphtheria_tetanus_pertussis_2rw + 1.months), format: :custom
+                else
+                  l (@birthday + 192.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>ХИБ-инфекция</p>
+      </div>
+      <p class="<%= v.hib_desease_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.hib_desease_1w
+              l v.hib_desease_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((@birthday + 2.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.hib_desease_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.hib_desease_2w
+              l v.hib_desease_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.hib_desease_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.hib_desease_1w > @birthday + 3.months
+                  l (v.hib_desease_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 4.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.hib_desease_3w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>3 вакцинация: </strong>
+        <%= if v.hib_desease_3w
+              l v.hib_desease_3w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.hib_desease_2w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.hib_desease_2w > @birthday + 5.months
+                  l (v.hib_desease_2w + 1.months), format: :custom
+                else
+                  l (@birthday + 6.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <p class="<%= v.hib_desease_4w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>4 вакцинация: </strong>
+        <%= if v.hib_desease_4w
+              l v.hib_desease_4w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.hib_desease_3w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.hib_desease_3w > @birthday + 11.months
+                  l (v.hib_desease_3w + 1.months), format: :custom
+                else
+                  l (@birthday + 12.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Ротавирусная инфекция</p>
+      </div>
+      <p class="<%= v.rota_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.rota_1w
+              l v.rota_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((@birthday + 2.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.rota_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.rota_2w
+              l v.rota_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{
+                if v.rota_1w.nil?
+                  "рассчитается от даты предыдущей прививки"
+                elsif v.rota_1w > @birthday + 3.months
+                  l (v.rota_1w + 1.months), format: :custom
+                else
+                  l (@birthday + 4.months), format: :custom
+                end
+              }"
+            end %>
+      </p>
+      <div class="text-center pt-3 fs-4">
+        <p>Covid-19</p>
+      </div>
+      <p class="<%= v.covid19_1w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>1 вакцинация: </strong>
+        <%= if v.covid19_1w
+              l v.covid19_1w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(192) ? "можно уже сегодня" : l((@birthday + 192.months), format: :custom)}"
+            end %>
+      </p>
+      <p class="<%= v.covid19_2w ? 'alert alert-success' : 'alert alert-danger' %>">
+        <strong>2 вакцинация: </strong>
+        <%= if v.covid19_2w
+              l v.covid19_2w, format: :custom
+            else
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{v.covid19_1w ? l((v.covid19_1w + 1.months), format: :custom) : "рассчитается от даты предыдущей прививки"}"
+            end %>
+      </p>
+    <% else %>
+      <p>Для рассчёта графика вакцинаций добавьте дату рождения в вашем профиле</p>
+      <%= link_to "Редактировать профиль", edit_user_card_path(@user, @user.card) %>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+.welcome-page {
+  height: calc(100vh - 50px);
+  background-image: url(asset_path('welcome_bg.jpg'));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.welcome-text {
+  position: relative;
+  bottom: 150px
+}
+
+.welcome-about-item {
+  line-height: 1.2;
+}
+
+.color-lightgray {
+  color: gray;
+  opacity: 0.5;
+}
+
+@media (max-width: 1200px) {
+  .welcome-text {
+    position: relative;
+    bottom: 10px
+  }
+  .welcome-news {
+    h6 {
+      font-size: 15px;
+    }
+    small {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-page {
+    background-position: 30% 50%;
+  }
+}

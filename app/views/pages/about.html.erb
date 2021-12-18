@@ -1,0 +1,84 @@
+<section class="about-page pb-5">
+  <div class="container-fluid d-flex flex-column justify-content-around h-100">
+    <div class="row text-black-50 m-5 pt-5 about-text">
+      <div class="col-12 col-sm-7 col-md-5">
+        <p class="fw-bold"><span class="text-uppercase text-primary">MedHelper</span> - это
+          <span class="text-uppercase text-success">бесплатная</span> онлайн платформа, где вы можете оперативно и
+          удобно получить широкий спектр медицинских
+          услуг от лучших врачей не выходя из дома 24/7.</p>
+        <p class="fw-bold m-0">На сервисе<span class="text-uppercase text-primary"> MedHelper</span> Вы можете:</p>
+      </div>
+      <ul class="list-unstyled">
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>найти врача в Вашем городе и записаться на приём в удобное для Вас время</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>онлайн-консультация с докторами 24/7</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>запись на обследование или в лабораторию</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>составить индивидуальный график вакцинации</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="text-white p-5 mt-5 fs-5 bg-primary">
+  <div class="container">
+    <p>Сейчас, в условиях пандемии COVID-19, при угрозе заражения, особенно актуальной стала возможность получения
+      медицинской информации без посещения медицинской организации. С современными техническими средствами мы
+      обеспечиваем Вам такую возможность.<br>
+      В нашем сервисе мы собрали врачей доказательной медицины, которые могут проконсультировать по вопросам Вашего
+      здоровья.<br>
+      Если Вы не нашли в перечне нужного Вам врача, Вы можете оставить запрос, позвонив на один из номеров
+      call-центра.<br>
+      Все консультации с врачами на нашем сервисе абсолютно бесплатны для пациентов.</p>
+  </div>
+</div>
+<section class="text-white">
+  <div class="container">
+    <div class="row text-center my-5 position-relative">
+      <div class="col-12 col-md-6 pb-4">
+        <div class="p-4 bg-success border-50">
+          <i class="fas fa-credit-card my-3 fs-1"></i>
+          <h4>Наш сервис бесплатен для пациентов</h4>
+          <small>Наши врачи работают бесплатно на добровольческих началах, а сервис - без скрытых наценок и
+            комиссий.</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 pb-4">
+        <div class="p-4 bg-success border-50">
+          <i class="fas fa-chart-bar my-3 fs-1"></i>
+          <h4>Удобство и комфорт использования</h4>
+          <small>Врачи, диагностика, консультации, анализы, план лечения и вакцинации - все в одном сервисе.</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 pb-4">
+        <div class="p-4 bg-success border-50">
+          <i class="fas fa-laptop-medical my-3 fs-1"></i>
+          <h4>Доступность</h4>
+          <small>Все сервисы платформы доступны 24/7. Собственный call-центр. Возможность онлайн-записи в один
+            клик.</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 pb-4">
+        <div class="p-4 bg-success border-50">
+          <i class="fas fa-syringe my-3 fs-1"></i>
+          <h4>График вакцинации</h4>
+          <small>Составьте график вакцинации для Вас или Ваших детей согласно
+            <%= link_to "государственого Календаря
+            прививок.", "https://moz.gov.ua/article/immunization/kalendar-profilaktichnih-scheplen", target: "_blank" %>
+          </small>
+        </div>
+      </div>
+      <%= image_tag("med-miniicon.png",
+                    class: "about-items-image position-absolute rounded-circle bg-white p-4 d-md-block d-none") %>
+    </div>
+  </div>
+</section>

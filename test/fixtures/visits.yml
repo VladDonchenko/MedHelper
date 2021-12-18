@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  complaint: MyString
+  therapy: MyString
+  diagnosis: MyString
+  state: MyString
+  symptom: MyString
+  anamnesis_of_life: MyString
+  medical_history: MyString
+  event: one
+  type_of_inspection: 1
+
+two:
+  complaint: MyString
+  therapy: MyString
+  diagnosis: MyString
+  state: MyString
+  symptom: MyString
+  anamnesis_of_life: MyString
+  medical_history: MyString
+  event: two
+  type_of_inspection: 1

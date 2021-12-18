@@ -1,0 +1,4 @@
+ru:
+  time:
+    formats:
+      custom: "%e %B %Y"

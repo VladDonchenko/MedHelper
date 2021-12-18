@@ -1,0 +1,6 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3">Последние новости о COVID-19</h3>
+  <% @news.each do |item| %>
+    <%= render partial: 'one_news', locals: { item: item, text_length: 220} %>
+  <% end %>
+</div>

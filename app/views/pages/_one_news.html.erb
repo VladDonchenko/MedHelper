@@ -1,0 +1,11 @@
+<%= link_to item.link, class: "text-decoration-none news-link", target: "_blank" do %>
+  <div class="row no-gutters mb-3 text-white news-item">
+    <div class="col-8 bg-success news-item-height news-item-text py-4 d-flex flex-column justify-content-center">
+      <h6 class=""><%= item.title %></h6>
+      <small class="m-0 d-none d-lg-block"><%= item.content_encoded.truncate(text_length) %></small>
+    </div>
+    <div class="col-4 p-0 ">
+      <%= image_tag(item.enclosure.url, class: "img-fluid news-item-height") %>
+    </div>
+  </div>
+<% end %>

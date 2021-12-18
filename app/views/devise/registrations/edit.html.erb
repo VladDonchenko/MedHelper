@@ -1,0 +1,8 @@
+<div class="container text-center">
+  <%= content_tag(:div, flash[:notice], :id => "flash_notice", class: "alert alert-notice") if flash[:notice] %>
+  <div class="p-3 mb-5">
+    <h2 class="text-center text-primary pt-4 pb-3">Роль</h2>
+    <p class="text-small text-black-50">Для активации аккаунта Вам нужно выбрать роль</p>
+    <%= render 'form' %>
+  </div>
+</div>

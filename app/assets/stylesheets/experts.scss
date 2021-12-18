@@ -1,0 +1,15 @@
+// Place all the styles related to the Experts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.modal-body {
+  iframe {
+    width: 100%;
+  }
+}
+
+.modal-button {
+  color: #fff;
+  border-color: #fff;
+  border-style: double;
+  border-radius: 5px;
+}

@@ -1,0 +1,37 @@
+<section class="section-vaccine">
+  <div class="container">
+    <h3 class="text-center text-primary pt-4 pb-3">Мои Дети</h3>
+    <div class="row">
+      <% @children.each do |child| %>
+        <div class="col-12 col-lg-6 mb-4">
+          <div class="pacient-card bg-primary-light d-flex flex-column align-items-center">
+            <%= image_tag('baby-card.png', size: 150, class: 'text-center img-fluid mt-4') %>
+            <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+              <div class="d-flex flex-column">
+                <p>
+                  <strong>Имя ребёнка: </strong>
+                  <span><%= child.name %></span>
+                </p>
+                <p>
+                  <strong>Дата рождения: </strong>
+                  <span><%= l child.birthday, format: :custom %></span>
+                </p>
+              </div>
+            </div>
+            <%= link_to "Карта вакцинации - #{child.name}", user_child_vaccine_path(@user, child, child.id), class: "btn btn-lg btn-success mb-3 form-control" %>
+            <%= link_to 'Удалить ребёнка из списка', user_child_path(@user, child), method: :delete, class: "btn btn-light text-primary d-block mb-3", data: { confirm: 'Удалить ребёнка из списка?' } %>
+
+          </div>
+        </div>
+      <% end %>
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="pacient-card bg-primary-light d-flex flex-column align-items-center h-100">
+          <%= image_tag('baby-card.png', size: 150, class: 'text-center img-fluid mt-4') %>
+          <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+            <%= link_to "Добавить ребёнка", new_user_child_path(@user), class: "btn btn-lg btn-success" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

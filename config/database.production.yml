@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  user: <%= ENV.fetch("PG_USER") %>
+  password: <%= ENV.fetch("PG_PASSWORD") %>
+
+development:
+  <<: *default
+  database: develop_store
+
+test:
+  <<: *default
+  database: test_store
+
+production:
+  adapter: postgresql
+  database: production_store
+  pool: 5
+  timeout: 5000
+  user: <%= Rails.application.credentials.db_user %>
+  password: <%= Rails.application.credentials.db_password %>

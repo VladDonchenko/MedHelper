@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  <h2 class="pl-2 m-0 text-uppercase">
+    <%= link_to (image_tag "logo.png", class: "p-1", width: "180"),
+                home_path, class: "navbar-brand text-decoration-none fs-4 bg-white" %>
+  </h2>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item px-2">
+        <%= link_to "Найти врача", search_experts_path,
+                    class: "btn btn-secondary btn-sm d-block mb-1" if user_signed_in? && current_user.patient? %>
+      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item ">
+          <%= link_to "Профиль", user_path(current_user),
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.doctor? %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Записи на прием", expert_events_path(current_user.expert),
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.doctor? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Пациенты", patients_path,
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.doctor? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Записи на прием", user_events_path(current_user),
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Карта пациента", user_card_path(current_user, current_user.card),
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Карта вакцинации", user_vaccine_path(current_user, current_user.id),
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Дети", user_children_path(current_user),
+                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Новости", page_path(page: 'news'),
+                      class: "btn btn-secondary btn-sm mx-2 d-block mb-1" %>
+        </li>
+      <% end %>
+    </ul>
+    <div>
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item ">
+            <%= link_to "Выйти", destroy_user_session_path, method: :delete,
+                        class: "btn btn-danger btn-sm mx-2 d-block mb-1" %>
+          </li>
+        <% else %>
+          <li class="nav-item ">
+            <%= link_to "Зарегистрироваться", new_user_registration_path,
+                        class: "btn btn-primary btn-sm mx-2 d-block mb-1" %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to "Войти", user_session_path,
+                        class: "btn btn-primary btn-sm mx-2 d-block mb-1" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

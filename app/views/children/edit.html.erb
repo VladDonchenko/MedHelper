@@ -1,0 +1,7 @@
+<h2>Изменить профиль реьёнка</h2>
+
+<%= form_with model: @child do |f| %>
+  <p>Дата рождения:</p>
+  <%= f.date_field :birthday, :class => "form-control" %>
+  <%= f.submit "Сохранить измениения", class: "btn btn-success w-100" %>
+<% end %>

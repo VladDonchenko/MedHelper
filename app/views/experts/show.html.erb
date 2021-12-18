@@ -1,0 +1,88 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3"><%= @expert.full_name %></h3>
+  <div class="border border-success my-3 card-border">
+    <div class="row my-3">
+      <div class="col-12 col-md-3 d-flex align-items-center justify-content-center ml-md-5">
+        <%= image_tag(@expert.image, size: 200, class: "img-fluid px-md-2") %>
+      </div>
+      <div class="col-12 col-md-6 text-black-50 d-flex flex-column
+         justify-content-center align-items-center align-items-md-start px-4">
+        <h4 class="text-secondary">
+          <%= @expert.category.name %>
+        </h4>
+        <p><strong><%= @expert.level.name if @expert.level.present? %></strong></p>
+        <div class="d-inline-block">
+          <span class="badge rounded-pill bg-success"><%= @expert.experience.presence || 0 %></span>
+          <span> лет опыта</span>
+        </div>
+        <p><%= @expert.description %></p>
+      </div>
+      <div class="col-12 col-md-3 d-flex flex-column justify-content-around">
+        <div class="mx-2 ">
+          <div class="my-2">
+            <p>Рейтинг <i class='fas fa-star fa-lg gold-star'></i><%= @expert.rating %></p>
+            <p>Количество отзывов: <%= @expert.comments.count %></p>
+            <span>Рекомендации:
+            <i class="fas fa-thumbs-up fa-lg text-success px-1"></i><%= recommendent_count(true) %>
+              <i class="fas fa-thumbs-down fa-lg text-danger px-1"></i><%= recommendent_count(false) %>
+          </span>
+          </div>
+          <%= link_to(new_expert_event_path(@expert), method: :get, class: "btn btn-success w-100 mt-3") do %>
+            <i class="fa fa-calendar mx-2"></i>Записаться
+          <% end if current_user.patient? %>
+          <%= button_tag data: { toggle: "modal",
+                                 target: ".bd-example-modal-lg-#{@expert.id}" },
+                         class: "btn btn-primary text-white w-100 mt-3" do %>
+            <i class="fas fa-phone-alt mx-2"></i>Контакты
+          <% end %>
+        </div>
+        <%= render 'modal_contact', expert: @expert %>
+      </div>
+    </div>
+    <div class="row m-3 text-black-50">
+      <h5 class="text-secondary fs-5">Образование</h5>
+      <p><%= @expert.education.presence || "Врач не предоставил эту информацию" %></p>
+      <h5 class="text-secondary fs-5">Дополнительное образование</h5>
+      <p><%= @expert.additional_education.presence || "Врач не предоставил эту информацию" %></p>
+      <h5 class="text-secondary fs-5">Выполняет процедуры</h5>
+      <p><%= @expert.procedure.presence || "Врач не предоставил эту информацию" %></p>
+    </div>
+    <div class="bg-primary card-border pt-1 text-white">
+      <%= render partial: "users/doctor_schedule", locals: { expert: @expert } %>
+    </div>
+  </div>
+  <div>
+    <h4 class="text-center text-primary pt-4 pb-3">Комментарии</h4>
+    <%= link_to "Написать комментарий", new_comment_path(expert_id: @expert), method: :get,
+                class: "btn btn-small btn-primary m-2" if current_user.patient? %>
+    <% if @expert.comments.present? %>
+      <div class="m-2 d-flex-column">
+        <% @expert.comments.each do |comment| %>
+          <div class="col- p-4 bg-white mb-3 border border-success my-3 card-border">
+            <strong class="p-2">
+              <%= (comment.user.card.full_name if comment.user.card.present?).presence || comment.user.email %>
+            </strong>
+            <strong class="text-right p-2"><%= render_stars(comment.rating) %></strong>
+            <p class="p-3 my-3 border border-success bg-success card-border"><%= comment.body %></p>
+            <div class="d-flex justify-content-between">
+              <div class="p-2">
+                <span>Рекомендация </span>
+                <i class="fas fa-thumbs-<%= comment.recommendation ? "up" : "down" %>
+               fa-lg text-<%= comment.recommendation ? "success" : "danger" %>"></i>
+              </div>
+              <div class="text-right px-1 btn-group-sm">
+                <% if current_user == comment.user %>
+                  <%= link_to 'Редактировать', edit_comment_path(comment), class: "btn btn-secondary" %>
+                  <%= link_to 'Удалить', comment_path(comment), method: :delete,
+                              class: "btn btn-danger", data: { confirm: 'Удалить комментарий?' } %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center">Комментрии отсутствуют</p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.news-item {
+  &:hover {
+    border-radius: 40px 0 0 40px;
+    box-shadow: 4px 8px 8px 4px rgba(34, 60, 80, 0.2);
+    transition: all 0.15s ease-out;
+    transform: scale(1.01);
+  }
+
+  &-height {
+    min-height: 150px;
+  }
+
+  &-text {
+    border-radius: 40px 0 0 40px;
+  }
+}
+
+.news-link:nth-child(2n) {
+  .news-item-text {
+    background: #2eb2ff !important;
+  }
+}

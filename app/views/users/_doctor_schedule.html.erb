@@ -1,0 +1,60 @@
+<h4 class="text-center my-4">Рабочие часы</h4>
+<div class="row p-0 text-center justify-content-center">
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">ПН</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_monday == expert.hw_end_monday ? "выходной" : expert.hw_start_monday + "-" + expert.hw_end_monday %>
+      </small>
+    </div>
+  </div>
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">ВТ</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_tuesday == expert.hw_end_tuesday ? "выходной" : expert.hw_start_tuesday + "-" + expert.hw_end_tuesday %>
+      </small>
+    </div>
+  </div>
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">СР</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_wednesday == expert.hw_end_wednesday ? "выходной" : expert.hw_start_wednesday + "-" + expert.hw_end_wednesday %>
+      </small>
+    </div>
+  </div>
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">ЧТ</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_thursday == expert.hw_end_thursday ? "выходной" : expert.hw_start_thursday + "-" + expert.hw_end_thursday %>
+      </small>
+    </div>
+  </div>
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">ПТ</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_friday == expert.hw_end_friday ? "выходной" : expert.hw_start_friday + "-" + expert.hw_end_friday %>
+      </small>
+    </div>
+  </div>
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">СБ</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_saturday == expert.hw_end_saturday ? "выходной" : expert.hw_start_saturday + "-" + expert.hw_end_saturday %>
+      </small>
+    </div>
+  </div>
+  <div class="col-6 col-sm-4 col-md">
+    <div class="m-1 bg-light card-border p-3 m-1">
+      <p class="bg-success card-border">ВС</p>
+      <small class="text-black-50 m-0 text-nowrap">
+        <%= expert.hw_start_sunday == expert.hw_end_sunday ? "выходной" : expert.hw_start_sunday + "-" + expert.hw_end_sunday %>
+      </small>
+    </div>
+  </div>
+</div>
+

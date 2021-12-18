@@ -1,0 +1,20 @@
+<% unless @avail_time[0..-2].empty? %>
+  <br>
+  <div class="text-center alert alert-primary" role="alert">
+    <p id="status-avaliabe">Доступное времени для записи</p>
+    <% @avail_time[0..-2].each do |time| %>
+      <input name="event[start_time]"
+             id="event-check-<%= time %>"
+             class="btn-check"
+             type="radio"
+             value="<%= (@time.to_time + time.hour).to_datetime %>"
+             required=required>
+      <label class="btn btn-primary mb-1"
+             for="event-check-<%= time %>"><%= time.to_s + ':00' + '-' + (time + 1).to_s + ':00' %>
+      </label>
+    <% end %>
+  </div>
+<% else %>
+  <br>
+  <p class="text-center alert alert-primary" id="status-unavaliabe" role="alert">Нет доступного времени для записи</p>
+<% end %>

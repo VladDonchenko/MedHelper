@@ -1,0 +1,89 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3">Мои записи на приём</h3>
+  <% @events.each do |event| %>
+    <div class="border border-success my-3 card-border">
+      <h5 class="bg-success border border-success card-border-top text-white px-4 py-3 mb-0">
+        <% if event.approve? %>
+          Одобрено
+        <% elsif event.rejected? %>
+          Отменен
+        <% else %>
+          Ожидает подтверждения врача
+        <% end %>
+      </h5>
+      <div class="row my-3">
+        <div class="col-12 col-md-3 d-flex align-items-center justify-content-center ml-md-5">
+          <% if current_user.expert.present? %>
+            <%= image_tag event.user.card.image, size: 200, class: "avatar-contain m-3 img-fluid px-md-2" %>
+          <% else %>
+            <%= image_tag(event.expert.image.url || current_user.image, size: 200,
+                          class: "avatar-contain m-3 img-fluid px-md-2") %>
+          <% end %>
+        </div>
+        <div class="col-12 col-md-6 text-black-50 d-flex flex-column justify-content-center
+         align-items-center align-items-md-start">
+          <% if current_user.expert.present? %>
+            <h5>
+              <%= link_to event.user.card.full_name, user_card_path(event.user, event.user.card),
+                          class: "text-success" %>
+            </h5>
+            <p><strong>Начало приема: </strong> <%= l event.start_time, format: :long %></p>
+            <p><strong>Конец приема: </strong><%= l event.end_time, format: :long %></p>
+            <p><strong>Комментарии: </strong><%= event.comment %></p>
+          <% else %>
+            <h5>
+              <%= link_to event.expert.full_name, expert_path(event.expert), class: "text-success" %>
+            </h5>
+            <p class="text-secondary fs-5"><%= event.expert.category.name %></p>
+            <p><strong>Начало приема: </strong><%= l event.start_time, format: :long %></p>
+            <p><strong>Конец приема: </strong> <%= l event.end_time, format: :long %></p>
+            <p><strong>Комментарии: </strong><%= event.comment %></p>
+          <% end %>
+        </div>
+        <div class="col-12 col-md-3 d-flex flex-column justify-content-around">
+          <div class="mx-2 ">
+            <% if current_user.expert.present? %>
+              <%= link_to "Подробно", expert_event_path(event.expert, event),
+                          class: "btn btn-success d-block m-3", target: :_blank %>
+              <% if event.approve? %>
+                <% if event.type_of_call == 'offline' %>
+                  <%= link_to "Календарь", event.calendar_link,
+                              class: "btn btn-secondary d-block m-3", target: :_blank %>
+                <% else %>
+                  <%= link_to "Календарь", event.calendar_link,
+                              class: "btn btn-secondary d-block m-3", target: :_blank %>
+                  <%= link_to "Митинг", event.meeting_link,
+                              class: "btn btn-primary d-block m-3", target: :_blank %>
+                <% end %>
+              <% elsif event.rejected? %>
+              <% else %>
+                <%= link_to "Одобрить", expert_event_path(event.expert, event, q: 'approve'), method: 'PUT',
+                            class: "btn btn-primary d-block m-3" %>
+                <%= link_to "Отменить", expert_event_path(event.expert, event, q: 'reject'), method: 'PUT',
+                            class: "btn btn-danger d-block m-3" %>
+              <% end %>
+            <% else %>
+              <%= link_to "Подробно", expert_event_path(event.expert, event),
+                          class: "btn btn-success d-block m-3", target: :_blank %>
+              <% if event.pending? %>
+                <%= link_to "Отменить", expert_event_path(event.expert, event, q: 'reject'), method: 'PUT',
+                            class: "btn btn-danger d-block m-3" %>
+              <% elsif event.approve? %>
+                <% if event.type_of_call == 'offline' %>
+                  <%= link_to "Календарь", event.calendar_link,
+                              class: "btn btn-secondary d-block m-3", target: :_blank %>
+                <% else %>
+                  <%= link_to "Календарь", event.calendar_link,
+                              class: "btn btn-secondary d-block m-3", target: :_blank %>
+                  <%= link_to "Митинг", event.meeting_link,
+                              class: "btn btn-primary d-block m-3", target: :_blank %>
+                <% end %>
+              <% else %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

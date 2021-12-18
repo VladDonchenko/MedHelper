@@ -1,0 +1,41 @@
+<footer class="footer mt-auto text-center py-3 bg-primary">
+  <div class="container-fluid row d-flex justify-content-around align-items-center">
+    <div class="col-12 col-md-4 order-md-1 order-3">
+      <h2 class="pl-2 m-0 text-uppercase mt-md-0 mt-3">
+        <%= link_to (image_tag "logo-footer.png", class: "p-1", width: "200"),
+                    home_path, class: "navbar-brand text-decoration-none fs-4" %>
+      </h2>
+    </div>
+    <div class="col-6 col-md-4 order-md-2 order-2">
+      <ul class="list-unstyled d-md-inline-flex m-0">
+        <li>
+          <%= link_to "О нас", page_path(page: 'about'), class: "nav-link fs-5" %>
+        </li>
+        <li>
+          <%= link_to "Новости", page_path(page: 'news'), class: "nav-link fs-5" %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-6 col-md-4 text-white order-md-3 order-1 ">
+      <h5 class="text-uppercase m-0">Звоните нам</h5>
+      <p class="font-weight-bold">пн.-вс.: с 8:00 до 20:00</p>
+      <div class="d-flex flex-column">
+        <ul class="list-unstyled">
+          <li>
+            <%= link_to "(095)337 07 07", "tel:#{+380953370707}" %>
+          </li>
+          <li>
+            <%= link_to "(063)337 07 07", "tel:#{+380633370707}" %>
+          </li>
+          <li>
+            <%= link_to "(067)337 07 07", "tel:#{+380673370707}" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="text-white">
+    <%= link_to "Политика конфиденциальности", page_path(page: 'rule') %>
+  </div>
+
+</footer>

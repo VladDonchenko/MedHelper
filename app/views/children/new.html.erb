@@ -1,0 +1,30 @@
+<div class="container">
+  <% if @child.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>При добавлении ребёнка возникли ошибки:</h6>
+      <ul>
+        <% @child.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 class="text-center text-primary pt-4 pb-3">Добавить ребёнка</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center mb-4">
+    <%= image_tag('baby-card.png', size: 150, class: 'text-center img-fluid mt-4') %>
+    <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+      <%= form_with model: [@user, @user.children.build] do |f| %>
+        <div class="mb-3">
+          <%= f.label "Имя ребёнка", class: "pb-2" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label "Дата рождения", class: "pb-2" %>
+          <%= f.date_field :birthday, max: DateTime.now, class: "form-control" %>
+        </div>
+        <%= f.submit "Добавить", class: "btn btn-success form-control text-white" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

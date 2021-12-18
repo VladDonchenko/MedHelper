@@ -1,0 +1,33 @@
+$main-color: #2eb2ff;
+
+.pagination a, .pagination span, .pagination em {
+  border-radius: 0.25rem;
+  padding: 0.2em 0.35em;
+  display: block;
+  margin-right: 1px;
+  transition: all 0.15s ease-in-out;
+}
+
+.pagination .disabled {
+  color: #999999;
+  border: 1px solid #dddddd;
+}
+
+.pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background: $main-color;
+  color: #fff;
+  border: 1px solid $main-color;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: $main-color!important;
+  border: 1px solid $main-color;
+}
+
+.pagination a:hover, .pagination a:focus {
+  background-color: $main-color;
+  color: #fff!important;
+}

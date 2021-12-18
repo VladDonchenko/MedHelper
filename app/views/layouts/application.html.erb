@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+  <title>MedHelper</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+ 
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <% if Rails.env.production? %>
+    <meta name="google-site-verification" content="X6zgbF3iD6LmVdqIVtJboyt7ddTXHeHSrtqjmMy1EPE"/>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <% end %>
+</head>
+
+<body class="d-flex flex-column h-100">
+<%= render 'layouts/navbar' %>
+<div class="pt-3 mt-5">
+  <div class="col-12 text-center">
+    <% flash.each do |name, message| %>
+      <p class="alert alert-hidden alert-<%= name %>">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+  <%= yield %>
+</div>
+</body>
+<%= render 'layouts/footer' %>
+</html>

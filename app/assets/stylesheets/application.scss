@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$theme-colors: (
+        "primary": #2eb2ff,
+        "secondary": #ffbe3b,
+        "success": #a6d433,
+        "danger": red,
+        "warning": yellow,
+        "primary-light": #cee3ff,
+        "light": #f8f9fa
+);
+
+@import 'bootstrap';
+
+a {
+  color: #ffffff !important;
+}
+
+$fa-font-path: "font-awesome/fonts" !default;
+
+.card-border {
+  border-radius: 15px;
+
+  &-top {
+    border-radius: 15px 15px 0 0;
+  }
+}
+
+#customFile {
+  border: 1px solid #ced4da;
+  width: 855px;
+  height: 40px !important;
+  border-radius: 0.25rem !important;
+  margin: 5px;
+  padding: 5px;
+}
+
+.filter {
+  margin-top: 10px;
+}
+
+#menu li {
+  display: inline-block;
+}
+
+.datepicker-dropdown {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.datepicker td, .datepicker th {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.85rem;
+}
+
+.button-contact {
+  width: 392px;
+}
+
+.alert-event {
+  padding: 0;
+}
+
+.inherit {
+  width: inherit;
+}
+
+.card-header:first-child.card-pacient {
+  background-color: #303c6c;
+  color: white;
+  border-radius: 50px 50px 0 0;
+}
+
+.card-pacient-first {
+  border-radius: 50px 50px 50px 50px;
+}
+
+.card-client-show {
+  margin: 0 20px 20px 20px;
+}
+
+.form-check input[type="radio"]:checked ~ .role-image {
+  background: #b8dd5c !important;
+  border-color: #b8dd5c !important;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.border-50 {
+  border-radius: 50px;
+}
+
+.border-20 {
+  border-radius: 20px;
+}
+

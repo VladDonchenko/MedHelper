@@ -1,0 +1,61 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3">Запись на приём</h3>
+  <div class="border border-primary border-50 p-5 mb-3">
+    <%= form_with model: [@expert, @event] do |f| %>
+      <div class="text-center">
+        <div class="mb-3">
+          <%= f.label "Тип приема", class: "pb-2 fs-5" %>
+          <%= select_tag('event[type_of_call]',
+                         options_for_select([['Офлайн консультация', 'offline'], ['Онлайн консультация', 'online']]),
+                         class: 'form-control',
+                         required: true) %>
+          <% @event.errors.full_messages_for(:type).each do |message| %>
+            <div class="alert alert-warning alert-event"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="text-center">
+          <%= f.label "Дата", class: "pb-2 fs-5" %><br>
+          <%= f.date_field 'event[start_time]',
+                           class: "form-control",
+                           min: 0.days.ago,
+                           id: 'eventStartDate',
+                           required: true %>
+        </div>
+      </div>
+      <div id="time">
+      </div>
+      <div class="mb-3">
+        <div class="text-center">
+          <%= f.label "Комментарий", class: "pb-2 fs-5" %>
+          <%= f.text_area(:comment, cols: 3, rows: 3, class: 'form-control', required: true) %>
+          <% @event.errors.full_messages_for(:comment).each do |message| %>
+            <div class="alert alert-warning alert-event"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <%= f.hidden_field "event[expert_id]", value: @expert.id %>
+      <%= f.submit "Отправить заявку", id: 'submitBtn', class: "btn btn-lg btn-success text-center form-control text-white" %>
+    <% end %>
+  </div>
+</div>
+<script>
+    $('#eventStartDate').on('change', function () {
+        var self = this;
+        var date_time = self.value;
+        $.ajax({
+            url: '/experts/'+<%=@expert.id%>+'/events/check_time.js',
+            type: 'get',
+            data: {time: date_time, expert: '<%=@expert.id%>'},
+            success: function (response) {
+                $('#time').html(response);
+                if ($(document).find('#time .btn').length) {
+                  $(document).find('#submitBtn').attr('disabled', false)
+                } else {
+                  $(document).find('#submitBtn').attr('disabled', true)
+                }
+            }
+        });
+    })
+</script>

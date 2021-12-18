@@ -1,0 +1,64 @@
+<div class="modal fade bd-example-modal-lg-<%= expert.id %>"
+     tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary">
+        <h5 class="modal-title text-white">Контакты</h5>
+        <button type="button" class="close bg-secondary modal-button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-7">
+            <% if expert.address.present? %>
+              <iframe
+                width="460"
+                height="470"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+                          &q=Черкассы+<%= set_address(expert.address) %>">
+              </iframe>
+            <% else %>
+              <iframe
+                width="460"
+                height="470"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+                          &q=Черкассы">
+              </iframe>
+            <% end %>
+          </div>
+          <div class="col-sm-5">
+            <h5 class="text-center text-primary">Адрес</h5>
+            <p class="text-center text-secondary"><%= expert.address.presence || "Нет информации" %></p>
+            <h5 class="text-center text-primary">Телефон</h5>
+            <p class="text-center text-secondary">
+              <% if expert.phone.present? %>
+                <%= link_to "#{expert.phone}", "tel:#{expert.phone}", class: "text-secondary" %>
+              <% else %>
+                Нет информации
+              <% end %>
+            </p>
+            <h5 class="text-center text-primary">Время работы</h5>
+            <p class="text-center text-secondary">Пн: <%= expert.hw_start_monday %>-<%= expert.hw_end_monday %></p>
+            <p class="text-center text-secondary">Вт: <%= expert.hw_start_thursday %>
+              -<%= expert.hw_end_thursday %></p>
+            <p class="text-center text-secondary">Ср: <%= expert.hw_start_wednesday %>
+              -<%= expert.hw_end_wednesday %></p>
+            <p class="text-center text-secondary">Чт: <%= expert.hw_start_tuesday %>
+              -<%= expert.hw_end_tuesday %></p>
+            <p class="text-center text-secondary">Пт: <%= expert.hw_start_friday %>-<%= expert.hw_end_friday %></p>
+            <p class="text-center text-secondary">Сб: <%= expert.hw_start_saturday %>
+              -<%= expert.hw_end_saturday %></p>
+            <p class="text-center text-secondary">Вс: <%= expert.hw_start_sunday %>-<%= expert.hw_end_sunday %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

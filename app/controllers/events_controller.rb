@@ -66,7 +66,7 @@ class EventsController < ApplicationController
   def event_params
     p = params.require(:event).permit(:start_time, :comment, :type_of_call,
                                       :end_time).merge(expert_id: @expert.id)
-    p[:end_time] = p[:start_time].to_datetime + 1.hour
+   
     p[:status] = 'pending'
     p
   end

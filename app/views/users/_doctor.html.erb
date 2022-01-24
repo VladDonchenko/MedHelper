@@ -2,71 +2,30 @@
   <h3 class="text-center text-primary pt-4 pb-3">Профиль врача</h3>
   <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
     <div class="text-center">
-      <%= image_tag(@user.expert.image.url || @user.image, size: 250, class: 'text-center img-fluid mt-4') %>
+      
     </div>
     <div class="m-auto">
       <div class="pacient-card-info bg-primary p-4 text-white m-3 row">
         <div class="d-flex flex-column">
-          <% @user_fields_hash.each do |key, val| %>
-            <%= user_fields(key, val) %>
-          <% end %>
+          
 
           <%= render partial: "users/doctor_schedule", locals: { expert: @user.expert } %>
 
-          <div class="pt-3">
-            <h4 class="text-center mb-3">Адрес</h4>
-            <% if @user.expert.address.present? %>
-              <iframe
-                width="100%"
-                height="400px"
-                loading="lazy"
-                allowfullscreen
-                src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
-      &q=Черкассы+<%= set_address(@user.expert.address) %>">
-              </iframe>
-            <% else %>
-              <iframe
-                width="100%"
-                height="400px"
-                loading="lazy"
-                allowfullscreen
-                src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
-      &q=Черкассы">
-              </iframe>
-            <% end %>
-          </div>
+          
         </div>
       </div>
     </div>
-    <%= link_to "Редактировать профиль", edit_expert_path(@user.expert),
-                class: "btn btn-light text-primary d-block mb-4 inherit" %>
-    <%= link_to "Посмотреть как выглядит профиль со стороны", expert_path(@user.expert),
-                class: "btn btn-light text-primary d-block mb-4 inherit" %>
+    
+    
   </div>
 </div>
 
 <h3 class="text-center text-primary pt-4 pb-3">Оставленные мне комментарии</h3>
-<% if @user.expert.comments.present? %>
+
   <div class="m-2 d-flex-column">
-    <% @user.expert.comments.each do |comment| %>
-      <div class="col- p-4 bg-white mb-3 border border-success my-3 card-border">
-        <strong class="p-2">
-          <%= link_to (comment.user.card.full_name if comment.user.card.present?).presence || comment.user.email,
-                      user_card_path(comment.user, comment.user.card),
-                      class: "text-success" %>
-        </strong>
-        <strong class="text-right p-2"><%= render_stars(comment.rating) %></strong>
-        <p class="p-3 my-3 border border-success bg-success card-border"><%= comment.body %></p>
-        <div class="d-flex justify-content-between">
-          <div class="p-2">
-            <span>Рекомендация </span>
-            <i class="fas fa-thumbs-<%= comment.recommendation ? "up" : "down" %>
-               fa-lg text-<%= comment.recommendation ? "success" : "danger" %>"></i>
-          </div>
-        </div>
-      </div>
-    <% end %>
+   
+     
   </div>
-<% else %>
+
   <p class="text-center">Комментрии отсутствуют</p>
-<% end %>
+

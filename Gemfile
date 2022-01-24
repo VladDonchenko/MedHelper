@@ -23,6 +23,9 @@ gem 'world-flags', github: 'kristianmandrup/world-flags', branch: 'master'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem "figaro"
+gem "rdoc"
+
 gem 'activeadmin'
 gem 'devise'
 gem 'will_paginate', '~> 3.3'

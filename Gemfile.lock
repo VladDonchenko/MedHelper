@@ -177,6 +177,8 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     ffi (1.15.4)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -311,6 +313,8 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    psych (4.0.3)
+      stringio
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -362,6 +366,8 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rdoc (6.4.0)
+      psych (>= 4.0.0)
     regexp_parser (2.2.0)
     representable (3.1.1)
       declarative (< 0.1.0)
@@ -426,6 +432,7 @@ GEM
       net-ssh (>= 2.8.0)
     sshkit-sudo (0.1.0)
       sshkit (~> 1.8)
+    stringio (3.0.1)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.1.0)
@@ -484,6 +491,7 @@ DEPENDENCIES
   cloudinary (~> 1.18.1)
   devise
   dotenv-rails
+  figaro
   google-api-client
   jbuilder (~> 2.7)
   jwt (~> 2.2.2)
@@ -499,6 +507,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.2, >= 6.1.2.1)
   rails_12factor (= 0.0.2)
+  rdoc
   rubocop
   russian (~> 0.6.0)
   sass-rails (>= 6)

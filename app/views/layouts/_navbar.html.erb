@@ -23,10 +23,7 @@
           <%= link_to "Профиль", user_path(current_user),
                       class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.doctor? %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Записи на прием", expert_events_path(current_user.expert),
-                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.doctor? %>
-        </li>
+        
         <li class="nav-item ">
           <%= link_to "Пациенты", patients_path,
                       class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.doctor? %>
@@ -35,10 +32,7 @@
           <%= link_to "Записи на прием", user_events_path(current_user),
                       class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>
         </li>
-        <li class="nav-item ">
-          <%= link_to "Карта пациента", user_card_path(current_user, current_user.card),
-                      class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>
-        </li>
+       
         <li class="nav-item ">
           <%= link_to "Карта вакцинации", user_vaccine_path(current_user, current_user.id),
                       class: "btn btn-success btn-sm mx-2 d-block mb-1" if current_user.patient? %>

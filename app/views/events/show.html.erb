@@ -14,13 +14,7 @@
        align-items-center">
         <h5 class="text-success mb-3">Информация о приёме</h5>
         <p>
-          <i class="fa fa-calendar text-success"></i>
-          <strong> Начало приема: </strong> <%= l @event.start_time, format: :long %>
-        </p>
-        <p>
-          <i class="fa fa-calendar text-success"></i>
-          <strong> Конец приема: </strong> <%= l @event.end_time, format: :long %>
-        </p>
+         
         <p>
           <i class="fa fa-phone-alt text-success"></i>
           <strong> Тип приёма: </strong> <%= @event.type_of_call %>
@@ -32,8 +26,8 @@
       </div>
       <div class="col-12 col-md-3 d-flex flex-column align-items-center justify-content-center ml-md-5">
         <h5 class="text-center info-card text-uppercase text-success">Пациент</h5>
-        <%= image_tag @event.user.card.image, size: 150, class: "avatar-contain m-3 img-fluid" %>
-        <p class="text-center text-uppercase"><%= @event.user.card.full_name %></p>
+        
+        <p class="text-center text-uppercase"><%= @event.user.name %></p>
       </div>
     </div>
   </div>

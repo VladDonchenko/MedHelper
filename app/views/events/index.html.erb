@@ -16,8 +16,7 @@
           <% if current_user.expert.present? %>
             <%= image_tag event.user.card.image, size: 200, class: "avatar-contain m-3 img-fluid px-md-2" %>
           <% else %>
-            <%= image_tag(event.expert.image.url || current_user.image, size: 200,
-                          class: "avatar-contain m-3 img-fluid px-md-2") %>
+          
           <% end %>
         </div>
         <div class="col-12 col-md-6 text-black-50 d-flex flex-column justify-content-center
@@ -35,8 +34,7 @@
               <%= link_to event.expert.full_name, expert_path(event.expert), class: "text-success" %>
             </h5>
             <p class="text-secondary fs-5"><%= event.expert.category.name %></p>
-            <p><strong>Начало приема: </strong><%= l event.start_time, format: :long %></p>
-            <p><strong>Конец приема: </strong> <%= l event.end_time, format: :long %></p>
+            
             <p><strong>Комментарии: </strong><%= event.comment %></p>
           <% end %>
         </div>

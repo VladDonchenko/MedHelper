@@ -14,14 +14,14 @@ class User < ApplicationRecord
   enum role: %i[patient doctor]
 
   def self.from_omniauth(access_token)
-    data = access_token.info
+    
     user = User.where(email: data['email']).first
 
     user ||= User.create(
-      name: access_token.info.name,
+      name: data['name'],
       email: data['email'],
-      image: access_token.info.image,
-      password: SecureRandom.hex(8))
+      password: '28ddds83'
+    )
     user
   end
 end
